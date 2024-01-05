@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sep-golang/ecs"
 	"sep-golang/sep"
 )
 
@@ -33,6 +34,18 @@ func dcapHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	var world ecs.World
+
+	var e *ecs.Entity = addEntity("dcap")
+
+	dcap := &sep.DeviceCapability{
+		Href:       "/dcap",
+		Poll_rate:  900,
+		Time:       sep.TimeLink{Href: "/tm"},
+		Self:       sep.SelfDeviceLink{Href: "/sdev"},
+		EndDevices: sep.EndDeviceListLink{Href: "/edev", All: 1},
+	}
+
 	http.HandleFunc("/dcap", dcapHandler)
 	cfg := &tls.Config{
 		MinVersion: tls.VersionTLS12,
