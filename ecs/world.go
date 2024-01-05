@@ -11,7 +11,16 @@ type World struct {
 	id_count     Id
 }
 
-func (world *World) addEntity(tag string) *Entity {
+func NewWorld() *World {
+	return &World{
+		entities:     nil,
+		new_entities: nil,
+		entity_map:   nil,
+		id_count:     0,
+	}
+}
+
+func (world *World) AddEntity(tag string) *Entity {
 	world.id_count++
 	e := &Entity{
 		id:  world.id_count,

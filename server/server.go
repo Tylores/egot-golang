@@ -34,9 +34,9 @@ func dcapHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	var world ecs.World
+	world := ecs.NewWorld()
 
-	var e *ecs.Entity = addEntity("dcap")
+	var e *ecs.Entity = world.AddEntity("dcap")
 
 	dcap := &sep.DeviceCapability{
 		Href:       "/dcap",
@@ -45,6 +45,8 @@ func main() {
 		Self:       sep.SelfDeviceLink{Href: "/sdev"},
 		EndDevices: sep.EndDeviceListLink{Href: "/edev", All: 1},
 	}
+
+	e.DevicCapability = dcap
 
 	http.HandleFunc("/dcap", dcapHandler)
 	cfg := &tls.Config{
