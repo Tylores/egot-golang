@@ -1,7 +1,7 @@
 package ecs
 
 import (
-	"sep-golang/sep"
+	"github.com/Tylores/sep-models/sep"
 )
 
 type Id uint32
