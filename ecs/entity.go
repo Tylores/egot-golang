@@ -7,8 +7,11 @@ import (
 type Id uint32
 
 type Entity struct {
-	id              Id
-	tag             string
-	active          bool
-	DevicCapability *sep.DeviceCapability
+	id                Id
+	tag               string
+	active            bool
+	DevicCapability   *sep.DeviceCapability
+	TimeLink          *sep.TimeLink
+	EndDeviceListLink *sep.EndDeviceListLink
+	SelfDeviceLink    *sep.SelfDeviceLink
 }
